@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PAN Card Tampering Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Upload Original and Tampered PAN Card</h2>
+    <form method="post" enctype="multipart/form-data">
+        <label>Original Image:</label>
+        <input type="file" name="original" required><br><br>
+        <label>Tampered Image:</label>
+        <input type="file" name="tampered" required><br><br>
+        <input type="submit" value="Compare">
+    </form>
+
+    {% if score %}
+        <h3>SSIM Score: {{ score }}</h3>
+        <div>
+            <h4>Original</h4>
+            <img src="{{ url_for('static', filename=original_image) }}" width="250">
+            <h4>Tampered</h4>
+            <img src="{{ url_for('static', filename=tampered_image) }}" width="250">
+        </div>
+    {% endif %}
+</body>
+</html>
